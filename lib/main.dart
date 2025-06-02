@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/Components/home.component.dart';
+import 'package:habit_tracker/Services/habit.services.dart';
 import 'package:habit_tracker/Theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HabitServices.initialize();
+  await HabitServices().saveFirstLaunchDate();
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
