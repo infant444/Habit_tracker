@@ -9,8 +9,11 @@ void main() async {
   await HabitServices.initialize();
   await HabitServices().saveFirstLaunchDate();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => HabitServices()),
+      ],
       child: HabitTracker(),
     ),
   );
